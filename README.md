@@ -1,2 +1,3 @@
 # belajar-golang
-implementasi bahasa golang untuk pemula
+implementasi bahasa golang untuk pemula.
+
