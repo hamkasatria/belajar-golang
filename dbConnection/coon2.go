@@ -19,7 +19,7 @@ type Album struct {
 }
 
 func main() {
-	//mengakses DB
+	// Capture connection properties.
 	cfg := mysql.Config{
 		User:   os.Getenv("DBUSER"),
 		Passwd: os.Getenv("DBPASS"),
@@ -27,9 +27,9 @@ func main() {
 		Addr:   "127.0.0.1:3306",
 		DBName: "latihanGo",
 	}
-	//Get Database handle
+	// Get a database handle.
 	var err error
-	db, err := sql.Open("mysql", cfg.FormatDSN())
+	db, err = sql.Open("mysql", cfg.FormatDSN())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -38,15 +38,13 @@ func main() {
 	if pingErr != nil {
 		log.Fatal(pingErr)
 	}
+	fmt.Println("Connected!")
 
-	fmt.Print("CONNECTED")
-
-	//memangil datanya
-	albums, err := albumsByArtist("Jhon Coltrane")
+	albums, err := albumsByArtist("Jon Coltrane")
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Album found : %v\n", albums)
+	fmt.Printf("Albums found: %v\n", albums)
 }
 
 func albumsByArtist(name string) ([]Album, error) {
